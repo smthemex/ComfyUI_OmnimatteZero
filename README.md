@@ -3,7 +3,7 @@
 
 # Update
 * Test Vram 12G,Ram 64,  video 1280x720 5s ,if lower Vram, keep 'block_number' <10 and >0, if  'block_number'=0 ,will run in full mode;
-* 小显存block_number 设置0-10，大的可以设置为0 或者大于10，直接调整，distill 模型测试似乎有问题
+* 小显存block_number 设置1-10，大的可以设置为0 或者大于10，直接调整，distill 模型测试似乎有问题
 
 
 # 1. Installation
