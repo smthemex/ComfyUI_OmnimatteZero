@@ -9,6 +9,7 @@ from diffusers.utils import is_torch_xla_available
 from diffusers.utils.torch_utils import randn_tensor
 import torch
 import gc
+
 import torch.nn.functional as F
 if is_torch_xla_available():
     import torch_xla.core.xla_model as xm
@@ -53,8 +54,9 @@ class OmnimatteZero(LTXConditionPipeline):
             latents = sigma * noise + (1 - sigma) * latents
         else:
             latents = noise.clone()
-
+        conditioning_mask_shape=None
         if len(conditions) > 0:
+            print("run conditioning")
             condition_latent_frames_mask = torch.zeros(
                 (batch_size, num_latent_frames), device=device, dtype=torch.float32
             )
@@ -114,8 +116,8 @@ class OmnimatteZero(LTXConditionPipeline):
             frame_index=0,
             device=device,
         )
-
-        latents = latents * (1 - conditioning_mask_shape) + noise * conditioning_mask_shape
+        if conditioning_mask_shape is not None:
+            latents = latents * (1 - conditioning_mask_shape) + noise * conditioning_mask_shape
 
         latents = self._pack_latents(
             latents, self.transformer_spatial_patch_size, self.transformer_temporal_patch_size
@@ -320,9 +322,9 @@ class OmnimatteZero(LTXConditionPipeline):
             device=device,
             dtype=torch.float32,
         )
-        self.vae.to(torch.device("cpu"))
-        gc.collect()
-        torch.cuda.empty_cache()
+        # self.vae.to(torch.device("cpu"))
+        # gc.collect()
+        # torch.cuda.empty_cache()
         video_coords = video_coords.float()
         video_coords[:, 0] = video_coords[:, 0] * (1.0 / frame_rate)
 
@@ -421,8 +423,6 @@ class OmnimatteZero(LTXConditionPipeline):
         if output_type == "latent":
             video = latents
         else:
-            if self.vae.device!=latents:
-                self.vae.to(latents.device)
             latents = self._denormalize_latents(
                 latents, self.vae.latents_mean, self.vae.latents_std, self.vae.config.scaling_factor
             )

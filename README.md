@@ -2,8 +2,9 @@
 [Official implementation of OmnimatteZero](https://github.com/dvirsamuel/OmnimatteZero/tree/main): Training-Free Video Matting and Compositing via Latent Diffusion Models
 
 # Update
+* add compose mode，but  got a normal effect.. 
 * Test Vram 12G,Ram 64,  video 1280x720 5s ,if lower Vram, keep 'block_number' <10 and >0, if  'block_number'=0 ,will run in full mode;
-* 小显存block_number 设置1-10，大的可以设置为0 或者大于10，直接调整，distill 模型测试似乎有问题
+* 小显存block_number 设置1-10，大的可以设置为0 或者大于10，直接调整，distill 模型对于简单的去水印可以试试
 
 
 # 1. Installation
@@ -34,6 +35,8 @@ pip install -r requirements.txt
 
 # 4. Example
 ![](https://github.com/smthemex/ComfyUI_OmnimatteZero/blob/main/example_workflows/example.png)
+* compose 
+![](https://github.com/smthemex/ComfyUI_OmnimatteZero/blob/main/example_workflows/example_c.png)
 
 # 5. Citation
 ```

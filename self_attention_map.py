@@ -16,8 +16,9 @@ from diffusers.utils import export_to_video, load_video
 from PIL import Image
 import numpy as np
 import os
-
-
+from transformers import  T5TokenizerFast
+from .object_removal import get_diffusers_mask
+cur_dir = os.path.dirname(os.path.abspath(__file__))
 def fix_num_frames_for_vae(num_frames: int, temporal_compression_ratio: int = 8) -> int:
     """
     Make sure num_frames is compatible with VAE: (k * ratio + 1).
@@ -226,7 +227,7 @@ class SelfAttentionMapExtraction:
             self.extractor = None
 
     @torch.no_grad()
-    def extract_from_video(self, video: torch.Tensor, prompt: str = "",
+    def extract_from_video(self, video: torch.Tensor, prompt_embeds,prompt_attention_mask,
                            height: Optional[int] = None, width: Optional[int] = None,
                            generator: Optional[torch.Generator] = None
                            ) -> Tuple[Dict[int, torch.Tensor], Tuple[int, int, int]]:
@@ -276,9 +277,9 @@ class SelfAttentionMapExtraction:
         timestep = torch.tensor([self.extraction_timestep * 1000], device=device)
 
         # Encode prompt
-        prompt_embeds, prompt_attention_mask, _, _ = self.pipeline.encode_prompt(
-            prompt=prompt, negative_prompt=None, do_classifier_free_guidance=False,
-            num_videos_per_prompt=1, device=device)
+        # prompt_embeds, prompt_attention_mask, _, _ = self.pipeline.encode_prompt(
+        #     prompt=prompt, negative_prompt=None, do_classifier_free_guidance=False,
+        #     num_videos_per_prompt=1, device=device)
 
         num_latent_frames = latents.shape[2]
         latent_height = latents.shape[3]
@@ -323,7 +324,7 @@ class SelfAttentionMapExtraction:
     @torch.no_grad()
     def extract_effects_mask(self, video, object_mask, height: int = 512, width: int = 768,
                              threshold: Optional[float] = None, dilation_size: int = 3,
-                             generator: Optional[torch.Generator] = None) -> torch.Tensor:
+                             generator: Optional[torch.Generator] = None,p_emb=None,emb_mask=None) -> torch.Tensor:
         """
         Extract effects mask (shadows, reflections) using self-attention.
 
@@ -368,7 +369,7 @@ class SelfAttentionMapExtraction:
         B, C, T, H, W = video_tensor.shape
 
         # Extract attention maps
-        attention_maps, latent_dims = self.extract_from_video(video_tensor, height=H, width=W, generator=generator)
+        attention_maps, latent_dims = self.extract_from_video(video_tensor,p_emb,emb_mask,height=H, width=W, generator=generator)
         num_latent_frames, latent_height, latent_width = latent_dims
         spatial_size = latent_height * latent_width
 
@@ -463,7 +464,7 @@ class SelfAttentionMapExtraction:
     def generate_total_mask(self, video, object_mask,
                             height: int = 512, width: int = 768,
                             threshold: Optional[float] = None, dilation_size: int = 3,
-                            fps: int = 24) -> torch.Tensor:
+                            fps: int = 24,p_emb=None,emb_mask=None) -> torch.Tensor:
         """
         Generate total_mask.mp4 combining object_mask with attention-based effects.
 
@@ -510,7 +511,7 @@ class SelfAttentionMapExtraction:
         print("Extracting self-attention maps...")
         effects_mask = self.extract_effects_mask(
             video_tensor, object_mask_binary, height=H, width=W,
-            threshold=threshold, dilation_size=dilation_size)
+            threshold=threshold, dilation_size=dilation_size,p_emb=p_emb,emb_mask=emb_mask)
 
         # Combine object mask + effects mask
         total_mask = torch.clamp(object_mask_binary + effects_mask, 0, 1)
@@ -536,7 +537,7 @@ class SelfAttentionMapExtraction:
 
 def generate_total_mask_for_folder(pipeline, video, mask,
                                    height: int = 512, width: int = 768,
-                                   threshold: Optional[float] = None, dilation_size: int = 3):
+                                   threshold: Optional[float] = None, dilation_size: int = 3,p_emb=None,emb_mask=None):
     """
     Process a folder containing video.mp4 and object_mask.mp4, generate total_mask.mp4.
 
@@ -572,10 +573,18 @@ def generate_total_mask_for_folder(pipeline, video, mask,
     try:
         total_mask = extractor.generate_total_mask(
             video, mask, 
-            height=height, width=width, threshold=threshold, dilation_size=dilation_size)
+            height=height, width=width, threshold=threshold, dilation_size=dilation_size,p_emb=p_emb,emb_mask=emb_mask)
         return total_mask
     finally:
         extractor.cleanup()
+
+
+def infer_all_mask(pipeline, video, mask, height=512, width=768, threshold=None, dilation_size=3,p_emb=None,device=None):
+    tokenizer=T5TokenizerFast.from_pretrained(os.path.join(cur_dir, "LTX-Video-0.9.7-diffusers/tokenizer"))
+    prompt_attention_mask=get_diffusers_mask(tokenizer,"prompt",device)
+    return generate_total_mask_for_folder(pipeline, video, mask,
+                                          height=height, width=width,
+                                          threshold=threshold, dilation_size=dilation_size,p_emb=p_emb,emb_mask=prompt_attention_mask)
 
 
 # if __name__ == "__main__":
