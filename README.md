@@ -22,7 +22,7 @@ pip install -r requirements.txt
 ```
 # 3. Models
 * Vae [a-r-r-o-w/LTX-Video-0.9.7-diffusers](https://huggingface.co/a-r-r-o-w/LTX-Video-0.9.7-diffusers/tree/main)
-* Dit or gguf  [aliyun](https://pan.quark.cn/s/c0bc1f335f8c)  or huggingface [smthem/LTX-Video-0.9.7-diffusers-merge](https://huggingface.co/smthem/LTX-Video-0.9.7-diffusers-merge/tree/main)
+* Dit or gguf  [Chinese user aliyun](https://pan.quark.cn/s/140880861c36)  or huggingface [smthem/LTX-Video-0.9.7-diffusers-merge](https://huggingface.co/smthem/LTX-Video-0.9.7-diffusers-merge/tree/main)
 
 ```
 --  ComfyUI/models/vae
