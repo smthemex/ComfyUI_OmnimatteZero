@@ -1,9 +1,9 @@
 [project]
 name = "omnimattezero"
 description = "Training-Free Video Matting and Compositing via Latent Diffusion Models"
-version = "1.0.0"
+version = "1.1.0"
 license = {file = "LICENSE"}
-dependencies = ["# OmnimatteZero requirements", "torch>=2.4.0", "torchvision>=0.19.0", "opencv-python>=4.9.0.80", "diffusers>=0.31.0", "transformers>=4.49.0", "tokenizers>=0.20.3", "accelerate>=1.1.1", "tqdm", "imageio", "easydict", "ftfy", "dashscope", "imageio-ffmpeg", "sentencepiece", "protobuf", "tiktoken"]
+dependencies = [""]
 
 [project.urls]
 Repository = "https://github.com/smthemex/ComfyUI_OmnimatteZero"

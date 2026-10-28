@@ -1,42 +1,306 @@
 {
   "id": "ec9b9b84-976f-4a23-88fe-01a88eff1187",
   "revision": 0,
-  "last_node_id": 91,
-  "last_link_id": 119,
+  "last_node_id": 139,
+  "last_link_id": 176,
   "nodes": [
     {
-      "id": 6,
-      "type": "CreateVideo",
+      "id": 99,
+      "type": "OmnimatteZeroRemoveConditioning",
       "pos": [
-        22377.184730631783,
-        -448.5130785030359
+        22165.001889749117,
+        -1994.045165399835
+      ],
+      "size": [
+        225,
+        153.99998273648143
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "vae",
+          "type": "OZ_VAE",
+          "link": 168
+        },
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 133
+        },
+        {
+          "name": "object_mask",
+          "type": "MASK",
+          "link": 148
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            175
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OmnimatteZeroRemoveConditioning"
+      },
+      "widgets_values": [
+        768,
+        480
+      ],
+      "widgets_values_named": {
+        "width": 768,
+        "height": 480
+      }
+    },
+    {
+      "id": 106,
+      "type": "GetVideoComponents",
+      "pos": [
+        21744.055051327807,
+        -1960.9635350210606
+      ],
+      "size": [
+        140,
+        106
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 136
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            133
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": []
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "links": []
+        },
+        {
+          "name": "bit_depth",
+          "type": "COMBO",
+          "links": []
+        },
+        {
+          "name": "color_space",
+          "type": "COMBO",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetVideoComponents"
+      }
+    },
+    {
+      "id": 107,
+      "type": "LoadVideo",
+      "pos": [
+        21241.052374645868,
+        -1995.4225855993977
+      ],
+      "size": [
+        397.48041925282337,
+        352.539834448599
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            136
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadVideo"
+      },
+      "widgets_values": [
+        "video (1).mp4",
+        "image"
+      ],
+      "widgets_values_named": {
+        "file": "video (1).mp4",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 112,
+      "type": "LoadVideo",
+      "pos": [
+        21225.07637666519,
+        -1604.2737203341603
+      ],
+      "size": [
+        397.48041925282337,
+        352.539834448599
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            143
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadVideo"
+      },
+      "widgets_values": [
+        "total_mask.mp4",
+        "image"
+      ],
+      "widgets_values_named": {
+        "file": "total_mask.mp4",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 113,
+      "type": "GetVideoComponents",
+      "pos": [
+        21760.66141842326,
+        -1782.6521551334458
+      ],
+      "size": [
+        140,
+        106
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 143
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            144
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "links": null
+        },
+        {
+          "name": "bit_depth",
+          "type": "COMBO",
+          "links": null
+        },
+        {
+          "name": "color_space",
+          "type": "COMBO",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetVideoComponents"
+      }
+    },
+    {
+      "id": 114,
+      "type": "ImageToMask",
+      "pos": [
+        21727.017503667288,
+        -1627.8932432949246
       ],
       "size": [
         270,
-        78
+        58
       ],
       "flags": {},
-      "order": 26,
-      "mode": 2,
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 144
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            148
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageToMask"
+      },
+      "widgets_values": [
+        "red"
+      ],
+      "widgets_values_named": {
+        "channel": "red"
+      }
+    },
+    {
+      "id": 126,
+      "type": "CreateVideo",
+      "pos": [
+        23052.48448310403,
+        -2076.5111050690157
+      ],
+      "size": [
+        270,
+        150
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 107
+          "link": 171
         },
         {
           "name": "audio",
           "shape": 7,
           "type": "AUDIO",
-          "link": 15
-        },
-        {
-          "name": "fps",
-          "type": "FLOAT",
-          "widget": {
-            "name": "fps"
-          },
-          "link": 14
+          "link": null
         }
       ],
       "outputs": [
@@ -44,7 +308,7 @@
           "name": "VIDEO",
           "type": "VIDEO",
           "links": [
-            13
+            167
           ]
         }
       ],
@@ -52,379 +316,156 @@
         "Node name for S&R": "CreateVideo"
       },
       "widgets_values": [
-        30
-      ]
+        25,
+        "auto",
+        "sRGB",
+        "none"
+      ],
+      "widgets_values_named": {
+        "fps": 25,
+        "bit_depth": "auto",
+        "color_space": "sRGB",
+        "codec": "none"
+      }
     },
     {
-      "id": 11,
-      "type": "LoadVideo",
-      "pos": [
-        21653.427345893364,
-        -78.4906478987655
-      ],
-      "size": [
-        507.5491980274237,
-        530.7584793174774
-      ],
-      "flags": {},
-      "order": 0,
-      "mode": 2,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "VIDEO",
-          "type": "VIDEO",
-          "links": [
-            12
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoadVideo"
-      },
-      "widgets_values": [
-        "video (2) (1).mp4",
-        "image"
-      ]
-    },
-    {
-      "id": 13,
+      "id": 127,
       "type": "SaveVideo",
       "pos": [
-        22195.49893014953,
-        -163.1084424739159
+        23016.35282623352,
+        -1801.097293939119
       ],
       "size": [
-        599.2535365630392,
-        611.3934939673661
+        393.33378898369057,
+        402.84338584017854
       ],
       "flags": {},
-      "order": 29,
-      "mode": 2,
+      "order": 12,
+      "mode": 0,
       "inputs": [
         {
           "name": "video",
           "type": "VIDEO",
-          "link": 13
+          "link": 167
         }
       ],
-      "outputs": [],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": null
+        }
+      ],
       "properties": {},
       "widgets_values": [
         "video/ComfyUI",
         "auto",
+        "auto",
         "auto"
-      ]
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "video/ComfyUI",
+        "format": "auto",
+        "format.codec": "auto",
+        "codec": "auto"
+      }
     },
     {
-      "id": 12,
-      "type": "LoadVideo",
+      "id": 132,
+      "type": "OmnimatteZeroVAELoader",
       "pos": [
-        21139.636448410907,
-        -83.7639213995481
+        21664.639812855134,
+        -2127.4724691566034
       ],
       "size": [
-        450.2763298414502,
-        513.2926074063969
-      ],
-      "flags": {},
-      "order": 1,
-      "mode": 2,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "VIDEO",
-          "type": "VIDEO",
-          "links": [
-            11
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoadVideo"
-      },
-      "widgets_values": [
-        "mask (1) (1).mp4",
-        "image"
-      ]
-    },
-    {
-      "id": 10,
-      "type": "GetVideoComponents",
-      "pos": [
-        21612.723796217764,
-        -241.36966634547792
-      ],
-      "size": [
-        140,
-        66
-      ],
-      "flags": {},
-      "order": 15,
-      "mode": 2,
-      "inputs": [
-        {
-          "name": "video",
-          "type": "VIDEO",
-          "link": 11
-        }
-      ],
-      "outputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "links": [
-            110
-          ]
-        },
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": null
-        },
-        {
-          "name": "fps",
-          "type": "FLOAT",
-          "links": null
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "GetVideoComponents"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 1,
-      "type": "OmnimatteZero_SM_Model",
-      "pos": [
-        21604.450360684623,
-        -618.1063962482413
-      ],
-      "size": [
-        319.99057100704374,
-        130
+        365.7837890625,
+        58
       ],
       "flags": {},
       "order": 2,
-      "mode": 2,
+      "mode": 0,
       "inputs": [],
       "outputs": [
         {
-          "name": "model",
-          "type": "MODEL",
+          "name": "vae",
+          "type": "OZ_VAE",
           "links": [
-            108
+            168,
+            169
           ]
         }
       ],
       "properties": {
-        "Node name for S&R": "OmnimatteZero_SM_Model"
+        "Node name for S&R": "OmnimatteZeroVAELoader"
       },
       "widgets_values": [
-        "none",
-        "LTX-Video-0.9.7-diffusers-Q8_0.gguf",
-        "LTX-Video-0.9.7-vae-diffusers.safetensors",
-        false
-      ]
+        "LTX-Video-0.9.7-vae-diffusers.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae": "LTX-Video-0.9.7-vae-diffusers.safetensors"
+      }
     },
     {
-      "id": 9,
-      "type": "GetVideoComponents",
+      "id": 133,
+      "type": "OmnimatteZeroDecode",
       "pos": [
-        21659.199484154826,
-        -408.7060654952589
+        22591.06935042177,
+        -1724.6627496208453
       ],
       "size": [
-        140,
-        66
+        349.61681539024477,
+        163.04874533958895
       ],
       "flags": {},
-      "order": 14,
-      "mode": 2,
-      "inputs": [
-        {
-          "name": "video",
-          "type": "VIDEO",
-          "link": 12
-        }
-      ],
-      "outputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "links": [
-            109
-          ]
-        },
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": [
-            15
-          ]
-        },
-        {
-          "name": "fps",
-          "type": "FLOAT",
-          "links": [
-            14
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "GetVideoComponents"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 60,
-      "type": "GetVideoComponents",
-      "pos": [
-        21437.585601061477,
-        808.9649607479304
-      ],
-      "size": [
-        140,
-        66
-      ],
-      "flags": {},
-      "order": 19,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
-          "name": "video",
-          "type": "VIDEO",
-          "link": 72
+          "name": "vae",
+          "type": "OZ_VAE",
+          "link": 169
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": 176
         }
       ],
       "outputs": [
         {
-          "name": "images",
+          "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            101
-          ]
-        },
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": [
-            70
-          ]
-        },
-        {
-          "name": "fps",
-          "type": "FLOAT",
-          "links": [
-            71
+            171
           ]
         }
       ],
       "properties": {
-        "Node name for S&R": "GetVideoComponents"
+        "Node name for S&R": "OmnimatteZeroDecode"
       },
-      "widgets_values": []
+      "widgets_values": [
+        0,
+        0,
+        0,
+        "fixed"
+      ],
+      "widgets_values_named": {
+        "decode_timestep": 0,
+        "decode_noise_scale": 0,
+        "seed": 0,
+        "control_after_generate": "fixed"
+      }
     },
     {
-      "id": 61,
-      "type": "GetVideoComponents",
+      "id": 134,
+      "type": "UNETLoader",
       "pos": [
-        21436.114356242648,
-        921.6550036134056
+        22098.46814452092,
+        -2129.5259239864067
       ],
       "size": [
-        140,
-        66
-      ],
-      "flags": {},
-      "order": 20,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "video",
-          "type": "VIDEO",
-          "link": 73
-        }
-      ],
-      "outputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "links": [
-            102
-          ]
-        },
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": null
-        },
-        {
-          "name": "fps",
-          "type": "FLOAT",
-          "links": null
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "GetVideoComponents"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 80,
-      "type": "GetVideoComponents",
-      "pos": [
-        21440.877531240167,
-        1034.3383506306043
-      ],
-      "size": [
-        140,
-        66
-      ],
-      "flags": {},
-      "order": 21,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "video",
-          "type": "VIDEO",
-          "link": 92
-        }
-      ],
-      "outputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "links": [
-            104
-          ]
-        },
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": null
-        },
-        {
-          "name": "fps",
-          "type": "FLOAT",
-          "links": null
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "GetVideoComponents"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 59,
-      "type": "OmnimatteZero_SM_Model",
-      "pos": [
-        21374.772964387023,
-        628.2839683449674
-      ],
-      "size": [
-        319.99057100704374,
-        130
+        394.59743030919884,
+        85.99995658780531
       ],
       "flags": {},
       "order": 3,
@@ -432,1246 +473,252 @@
       "inputs": [],
       "outputs": [
         {
-          "name": "model",
+          "name": "MODEL",
           "type": "MODEL",
           "links": [
-            100
+            174
           ]
         }
       ],
       "properties": {
-        "Node name for S&R": "OmnimatteZero_SM_Model"
+        "Node name for S&R": "UNETLoader"
       },
       "widgets_values": [
-        "none",
-        "LTX-Video-0.9.7-diffusers-Q8_0.gguf",
-        "LTX-Video-0.9.7-vae-diffusers.safetensors",
-        true
-      ]
+        "LTX-Video-0.9.7-comfy-int8_convrot.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "LTX-Video-0.9.7-comfy-int8_convrot.safetensors",
+        "weight_dtype": "default"
+      }
     },
     {
-      "id": 5,
-      "type": "CLIPLoader",
+      "id": 136,
+      "type": "OmnimatteZeroComposeLatent",
       "pos": [
-        22153.894473376004,
-        -1079.0783043644485
+        22130.798448411693,
+        -1770.8420160514602
       ],
       "size": [
-        270,
-        106
+        314.753515625,
+        162
       ],
       "flags": {},
       "order": 4,
-      "mode": 2,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "CLIP",
-          "type": "CLIP",
-          "links": [
-            4,
-            5
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CLIPLoader"
-      },
-      "widgets_values": [
-        "t5xxl_fp8_e4m3fn.safetensors",
-        "ltxv",
-        "default"
-      ]
-    },
-    {
-      "id": 89,
-      "type": "OmnimatteZero_SM_KSampler",
-      "pos": [
-        22016.1553583844,
-        -608.049884580107
-      ],
-      "size": [
-        300.8833984375,
-        370
-      ],
-      "flags": {},
-      "order": 23,
-      "mode": 2,
+      "mode": 4,
       "inputs": [
         {
-          "name": "model",
-          "type": "MODEL",
-          "link": 108
-        },
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 109
-        },
-        {
-          "name": "mask",
-          "type": "IMAGE",
-          "link": 110
-        },
-        {
-          "name": "positive",
-          "shape": 7,
-          "type": "CONDITIONING",
+          "name": "vae",
+          "type": "OZ_VAE",
           "link": null
         },
         {
-          "name": "negative",
-          "shape": 7,
-          "type": "CONDITIONING",
+          "name": "foreground",
+          "type": "IMAGE",
           "link": null
         },
         {
           "name": "video_bg",
-          "shape": 7,
           "type": "IMAGE",
           "link": null
         },
         {
           "name": "video_new_bg",
-          "shape": 7,
-          "type": "IMAGE",
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "links": [
-            107
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "OmnimatteZero_SM_KSampler"
-      },
-      "widgets_values": [
-        768,
-        512,
-        121,
-        3,
-        25,
-        1,
-        "fixed",
-        5,
-        false
-      ]
-    },
-    {
-      "id": 85,
-      "type": "GetVideoComponents",
-      "pos": [
-        21637.275580340767,
-        1074.4130890247307
-      ],
-      "size": [
-        140,
-        66
-      ],
-      "flags": {},
-      "order": 22,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "video",
-          "type": "VIDEO",
-          "link": 98
-        }
-      ],
-      "outputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "links": [
-            103
-          ]
-        },
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": null
-        },
-        {
-          "name": "fps",
-          "type": "FLOAT",
-          "links": null
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "GetVideoComponents"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 4,
-      "type": "CLIPTextEncode",
-      "pos": [
-        22450.62722979327,
-        -894.5317991425428
-      ],
-      "size": [
-        343.0508166605432,
-        88
-      ],
-      "flags": {},
-      "order": 17,
-      "mode": 2,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 5
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            117,
-            119
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CLIPTextEncode"
-      },
-      "widgets_values": [
-        "worst quality, inconsistent motion, blurry, jittery, distorted"
-      ]
-    },
-    {
-      "id": 3,
-      "type": "CLIPTextEncode",
-      "pos": [
-        22461.311492424782,
-        -1055.3260643104306
-      ],
-      "size": [
-        319.8937116722227,
-        88
-      ],
-      "flags": {
-        "collapsed": false
-      },
-      "order": 16,
-      "mode": 2,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 4
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            116,
-            118
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CLIPTextEncode"
-      },
-      "widgets_values": [
-        "Empty"
-      ]
-    },
-    {
-      "id": 90,
-      "type": "OmnimatteZero_SM_KSampler",
-      "pos": [
-        23276.655794999242,
-        -438.4561393565097
-      ],
-      "size": [
-        300.8833984375,
-        370
-      ],
-      "flags": {},
-      "order": 24,
-      "mode": 2,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 112
-        },
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 113
-        },
-        {
-          "name": "mask",
-          "type": "IMAGE",
-          "link": 115
-        },
-        {
-          "name": "positive",
-          "shape": 7,
-          "type": "CONDITIONING",
-          "link": 118
-        },
-        {
-          "name": "negative",
-          "shape": 7,
-          "type": "CONDITIONING",
-          "link": 119
-        },
-        {
-          "name": "video_bg",
-          "shape": 7,
           "type": "IMAGE",
           "link": null
         },
         {
-          "name": "video_new_bg",
-          "shape": 7,
-          "type": "IMAGE",
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "links": [
-            114
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "OmnimatteZero_SM_KSampler"
-      },
-      "widgets_values": [
-        768,
-        512,
-        121,
-        3,
-        20,
-        1,
-        "fixed",
-        5,
-        false
-      ]
-    },
-    {
-      "id": 38,
-      "type": "LoadVideo",
-      "pos": [
-        23634.754151406443,
-        -485.3139366482439
-      ],
-      "size": [
-        374,
-        448
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 2,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "VIDEO",
-          "type": "VIDEO",
-          "links": [
-            52
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoadVideo"
-      },
-      "widgets_values": [
-        "9236533000709af90dae0c4de6d00b09.mp4",
-        "image"
-      ]
-    },
-    {
-      "id": 37,
-      "type": "SaveVideo",
-      "pos": [
-        24006.59676230819,
-        -504.32117487583594
-      ],
-      "size": [
-        440.8609703766451,
-        487.5345162709268
-      ],
-      "flags": {},
-      "order": 30,
-      "mode": 2,
-      "inputs": [
-        {
-          "name": "video",
-          "type": "VIDEO",
-          "link": 51
-        }
-      ],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "video/ComfyUI",
-        "auto",
-        "auto"
-      ]
-    },
-    {
-      "id": 39,
-      "type": "GetVideoComponents",
-      "pos": [
-        23722.15545752547,
-        -645.4103958028294
-      ],
-      "size": [
-        140,
-        66
-      ],
-      "flags": {},
-      "order": 18,
-      "mode": 2,
-      "inputs": [
-        {
-          "name": "video",
-          "type": "VIDEO",
-          "link": 52
-        }
-      ],
-      "outputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "links": [
-            113
-          ]
-        },
-        {
-          "name": "audio",
-          "type": "AUDIO",
-          "links": [
-            55
-          ]
-        },
-        {
-          "name": "fps",
-          "type": "FLOAT",
-          "links": [
-            54
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "GetVideoComponents"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 36,
-      "type": "CreateVideo",
-      "pos": [
-        24113.59830000987,
-        -627.3255044723305
-      ],
-      "size": [
-        270,
-        78
-      ],
-      "flags": {},
-      "order": 27,
-      "mode": 2,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 114
-        },
-        {
-          "name": "audio",
-          "shape": 7,
-          "type": "AUDIO",
-          "link": 55
-        },
-        {
-          "name": "fps",
-          "type": "FLOAT",
-          "widget": {
-            "name": "fps"
-          },
-          "link": 54
-        }
-      ],
-      "outputs": [
-        {
-          "name": "VIDEO",
-          "type": "VIDEO",
-          "links": [
-            51
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CreateVideo"
-      },
-      "widgets_values": [
-        25
-      ]
-    },
-    {
-      "id": 57,
-      "type": "LoadImage",
-      "pos": [
-        22905.304728915413,
-        -420.79401081997827
-      ],
-      "size": [
-        296.21998838299623,
-        352.0189831553479
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 2,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            115
-          ]
-        },
-        {
-          "name": "MASK",
+          "name": "object_mask",
           "type": "MASK",
-          "links": []
+          "link": null
         }
       ],
-      "properties": {
-        "Node name for S&R": "LoadImage",
-        "image": "clipspace/clipspace-painted-masked-1770517900056.png [input]"
-      },
-      "widgets_values": [
-        "mask1280720.jpg",
-        "image"
-      ]
-    },
-    {
-      "id": 22,
-      "type": "OmnimatteZero_SM_Model",
-      "pos": [
-        22892.193142287324,
-        -641.9144258583707
-      ],
-      "size": [
-        319.99057100704374,
-        130
-      ],
-      "flags": {},
-      "order": 7,
-      "mode": 2,
-      "inputs": [],
       "outputs": [
         {
-          "name": "model",
-          "type": "MODEL",
-          "links": [
-            112
-          ]
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": null
         }
       ],
       "properties": {
-        "Node name for S&R": "OmnimatteZero_SM_Model"
+        "Node name for S&R": "OmnimatteZeroComposeLatent"
       },
       "widgets_values": [
-        "none",
-        "LTX-Video-0.9.7-diffusers-Q8_0.gguf",
-        "LTX-Video-0.9.7-vae-diffusers.safetensors",
-        false
-      ]
+        768,
+        480
+      ],
+      "widgets_values_named": {
+        "width": 768,
+        "height": 480
+      }
     },
     {
-      "id": 91,
-      "type": "Note",
+      "id": 139,
+      "type": "OmnimatteZeroSampler",
       "pos": [
-        23310.873007287522,
-        -616.079113151258
-      ],
-      "size": [
-        286.593571414036,
-        88
-      ],
-      "flags": {},
-      "order": 8,
-      "mode": 2,
-      "inputs": [],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "去水印流程，clip不是必选项"
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
-      "id": 58,
-      "type": "CreateVideo",
-      "pos": [
-        22311.31564995578,
-        863.5333721576784
+        22607.686198103456,
+        -2077.8013566639634
       ],
       "size": [
         270,
-        78
-      ],
-      "flags": {},
-      "order": 28,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 105
-        },
-        {
-          "name": "audio",
-          "shape": 7,
-          "type": "AUDIO",
-          "link": 70
-        },
-        {
-          "name": "fps",
-          "type": "FLOAT",
-          "widget": {
-            "name": "fps"
-          },
-          "link": 71
-        }
-      ],
-      "outputs": [
-        {
-          "name": "VIDEO",
-          "type": "VIDEO",
-          "links": [
-            74
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CreateVideo"
-      },
-      "widgets_values": [
-        30
-      ]
-    },
-    {
-      "id": 62,
-      "type": "LoadVideo",
-      "pos": [
-        20553.204990042355,
-        675.6591656703432
-      ],
-      "size": [
-        715.5491980274237,
-        521.2182487671398
+        222
       ],
       "flags": {},
       "order": 9,
       "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "VIDEO",
-          "type": "VIDEO",
-          "links": [
-            72
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoadVideo"
-      },
-      "widgets_values": [
-        "video (2).mp4",
-        "image"
-      ]
-    },
-    {
-      "id": 64,
-      "type": "LoadVideo",
-      "pos": [
-        20288.60333538634,
-        1243.8882826190502
-      ],
-      "size": [
-        554.2763298414502,
-        523.7622487677279
-      ],
-      "flags": {},
-      "order": 10,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "VIDEO",
-          "type": "VIDEO",
-          "links": [
-            73
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoadVideo"
-      },
-      "widgets_values": [
-        "object_mask.mp4",
-        "image"
-      ]
-    },
-    {
-      "id": 81,
-      "type": "LoadVideo",
-      "pos": [
-        20875.899694831434,
-        1246.1812840808416
-      ],
-      "size": [
-        636.6309297171392,
-        498.42061981142615
-      ],
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "VIDEO",
-          "type": "VIDEO",
-          "links": [
-            92
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoadVideo"
-      },
-      "widgets_values": [
-        "cat_reflection.mp4",
-        "image"
-      ]
-    },
-    {
-      "id": 86,
-      "type": "LoadVideo",
-      "pos": [
-        21517.145085729386,
-        1232.1465490324963
-      ],
-      "size": [
-        762.2763298414502,
-        582.1842198943002
-      ],
-      "flags": {},
-      "order": 12,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "VIDEO",
-          "type": "VIDEO",
-          "links": [
-            98
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoadVideo"
-      },
-      "widgets_values": [
-        "swan_lake.mp4",
-        "image"
-      ]
-    },
-    {
-      "id": 63,
-      "type": "SaveVideo",
-      "pos": [
-        22305.78022458308,
-        1229.1407646001567
-      ],
-      "size": [
-        637.421700730436,
-        569.7968017300838
-      ],
-      "flags": {},
-      "order": 31,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "video",
-          "type": "VIDEO",
-          "link": 74
-        }
-      ],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "video/ComfyUI",
-        "auto",
-        "auto"
-      ]
-    },
-    {
-      "id": 88,
-      "type": "OmnimatteZero_SM_KSampler",
-      "pos": [
-        21865.668023470258,
-        630.736683118269
-      ],
-      "size": [
-        300.8833984375,
-        370
-      ],
-      "flags": {},
-      "order": 25,
-      "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 100
+          "link": 174
         },
         {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 101
-        },
-        {
-          "name": "mask",
-          "type": "IMAGE",
-          "link": 102
-        },
-        {
-          "name": "positive",
-          "shape": 7,
-          "type": "CONDITIONING",
-          "link": 116
-        },
-        {
-          "name": "negative",
-          "shape": 7,
-          "type": "CONDITIONING",
-          "link": 117
-        },
-        {
-          "name": "video_bg",
-          "shape": 7,
-          "type": "IMAGE",
-          "link": 104
-        },
-        {
-          "name": "video_new_bg",
-          "shape": 7,
-          "type": "IMAGE",
-          "link": 103
+          "name": "latent",
+          "type": "LATENT",
+          "link": 175
         }
       ],
       "outputs": [
         {
-          "name": "images",
-          "type": "IMAGE",
+          "name": "LATENT",
+          "type": "LATENT",
           "links": [
-            105
+            176
           ]
         }
       ],
       "properties": {
-        "Node name for S&R": "OmnimatteZero_SM_KSampler"
+        "Node name for S&R": "OmnimatteZeroSampler"
       },
       "widgets_values": [
-        768,
-        512,
-        81,
+        "removal",
+        20,
         3,
-        10,
         0,
         "fixed",
-        2,
-        false
-      ]
-    },
-    {
-      "id": 87,
-      "type": "Note",
-      "pos": [
-        22262.45261781149,
-        662.7028321122634
+        0.3,
+        0.15
       ],
-      "size": [
-        286.593571414036,
-        88
-      ],
-      "flags": {},
-      "order": 13,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "compose need few steps 10\n合并模式的步数只要10步，乘以强度，实际是3步\nclip不是必选项"
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
+      "widgets_values_named": {
+        "mode": "removal",
+        "steps": 20,
+        "cfg": 3,
+        "seed": 0,
+        "control_after_generate": "fixed",
+        "denoise": 0.3,
+        "cond_noise_scale": 0.15
+      }
     }
   ],
   "links": [
     [
-      4,
-      5,
+      133,
+      106,
       0,
-      3,
-      0,
-      "CLIP"
-    ],
-    [
-      5,
-      5,
-      0,
-      4,
-      0,
-      "CLIP"
-    ],
-    [
-      11,
-      12,
-      0,
-      10,
-      0,
-      "VIDEO"
-    ],
-    [
-      12,
-      11,
-      0,
-      9,
-      0,
-      "VIDEO"
-    ],
-    [
-      13,
-      6,
-      0,
-      13,
-      0,
-      "VIDEO"
-    ],
-    [
-      14,
-      9,
-      2,
-      6,
-      2,
-      "FLOAT"
-    ],
-    [
-      15,
-      9,
-      1,
-      6,
-      1,
-      "AUDIO"
-    ],
-    [
-      51,
-      36,
-      0,
-      37,
-      0,
-      "VIDEO"
-    ],
-    [
-      52,
-      38,
-      0,
-      39,
-      0,
-      "VIDEO"
-    ],
-    [
-      54,
-      39,
-      2,
-      36,
-      2,
-      "FLOAT"
-    ],
-    [
-      55,
-      39,
-      1,
-      36,
-      1,
-      "AUDIO"
-    ],
-    [
-      70,
-      60,
-      1,
-      58,
-      1,
-      "AUDIO"
-    ],
-    [
-      71,
-      60,
-      2,
-      58,
-      2,
-      "FLOAT"
-    ],
-    [
-      72,
-      62,
-      0,
-      60,
-      0,
-      "VIDEO"
-    ],
-    [
-      73,
-      64,
-      0,
-      61,
-      0,
-      "VIDEO"
-    ],
-    [
-      74,
-      58,
-      0,
-      63,
-      0,
-      "VIDEO"
-    ],
-    [
-      92,
-      81,
-      0,
-      80,
-      0,
-      "VIDEO"
-    ],
-    [
-      98,
-      86,
-      0,
-      85,
-      0,
-      "VIDEO"
-    ],
-    [
-      100,
-      59,
-      0,
-      88,
-      0,
-      "MODEL"
-    ],
-    [
-      101,
-      60,
-      0,
-      88,
+      99,
       1,
       "IMAGE"
     ],
     [
-      102,
-      61,
-      0,
-      88,
-      2,
-      "IMAGE"
-    ],
-    [
-      103,
-      85,
-      0,
-      88,
-      6,
-      "IMAGE"
-    ],
-    [
-      104,
-      80,
-      0,
-      88,
-      5,
-      "IMAGE"
-    ],
-    [
-      105,
-      88,
-      0,
-      58,
-      0,
-      "IMAGE"
-    ],
-    [
+      136,
       107,
-      89,
       0,
-      6,
+      106,
       0,
-      "IMAGE"
+      "VIDEO"
     ],
     [
-      108,
-      1,
-      0,
-      89,
-      0,
-      "MODEL"
-    ],
-    [
-      109,
-      9,
-      0,
-      89,
-      1,
-      "IMAGE"
-    ],
-    [
-      110,
-      10,
-      0,
-      89,
-      2,
-      "IMAGE"
-    ],
-    [
+      143,
       112,
-      22,
       0,
-      90,
+      113,
+      0,
+      "VIDEO"
+    ],
+    [
+      144,
+      113,
+      0,
+      114,
+      0,
+      "IMAGE"
+    ],
+    [
+      148,
+      114,
+      0,
+      99,
+      2,
+      "MASK"
+    ],
+    [
+      168,
+      132,
+      0,
+      99,
+      0,
+      "OZ_VAE"
+    ],
+    [
+      169,
+      132,
+      0,
+      133,
+      0,
+      "OZ_VAE"
+    ],
+    [
+      171,
+      133,
+      0,
+      126,
+      0,
+      "IMAGE"
+    ],
+    [
+      167,
+      126,
+      0,
+      127,
+      0,
+      "VIDEO"
+    ],
+    [
+      174,
+      134,
+      0,
+      139,
       0,
       "MODEL"
     ],
     [
-      113,
-      39,
+      175,
+      99,
       0,
-      90,
+      139,
       1,
-      "IMAGE"
+      "LATENT"
     ],
     [
-      114,
-      90,
+      176,
+      139,
       0,
-      36,
-      0,
-      "IMAGE"
-    ],
-    [
-      115,
-      57,
-      0,
-      90,
-      2,
-      "IMAGE"
-    ],
-    [
-      116,
-      3,
-      0,
-      88,
-      3,
-      "CONDITIONING"
-    ],
-    [
-      117,
-      4,
-      0,
-      88,
-      4,
-      "CONDITIONING"
-    ],
-    [
-      118,
-      3,
-      0,
-      90,
-      3,
-      "CONDITIONING"
-    ],
-    [
-      119,
-      4,
-      0,
-      90,
-      4,
-      "CONDITIONING"
+      133,
+      1,
+      "LATENT"
     ]
   ],
   "groups": [
     {
-      "id": 1,
-      "title": "remove object",
-      "bounding": [
-        21099.87145140661,
-        -739.7381073033779,
-        1742.2621542733868,
-        1230.5022817596446
-      ],
-      "color": "#3f789e",
-      "font_size": 24,
-      "flags": {}
-    },
-    {
-      "id": 2,
-      "title": "remove mark",
-      "bounding": [
-        22882.193142287324,
-        -719.0103958028293,
-        1575.26459039751,
-        712.2237371979201
-      ],
-      "color": "#3f789e",
-      "font_size": 24,
-      "flags": {}
-    },
-    {
-      "id": 3,
+      "id": 5,
       "title": "Group",
       "bounding": [
-        22065.07480834208,
-        -1199.4530511479263,
-        885.5274568783534,
-        416.76473908835385
+        21227.94727169511,
+        -2204.398897536868,
+        2197.2641960481633,
+        958.1578245314452
       ],
       "color": "#3f789e",
-      "font_size": 24,
-      "flags": {}
-    },
-    {
-      "id": 4,
-      "title": "compose 合成",
-      "bounding": [
-        20541.188188119984,
-        549.7506463915597,
-        2290.204322565958,
-        1237.6023954937855
-      ],
-      "color": "#3f789e",
-      "font_size": 24,
       "flags": {}
     }
   ],
@@ -1679,13 +726,13 @@
   "extra": {
     "workflowRendererVersion": "LG",
     "ds": {
-      "scale": 0.3234918430761001,
+      "scale": 0.7627768444386321,
       "offset": [
-        -18804.194987602797,
-        433.16717187573
+        -21055.332321625836,
+        2374.0964874121923
       ]
     },
-    "frontendVersion": "1.37.11",
+    "frontendVersion": "1.57.1",
     "VHS_latentpreview": false,
     "VHS_latentpreviewrate": 0,
     "VHS_MetadataImage": true,
